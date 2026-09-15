@@ -1,0 +1,18 @@
+name: CI/CD
+
+# run this workflow every time someone pushes to the main branch
+on:
+  push:
+    branches: [main] 
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+      
+      - name: Say hello
+        run: |
+          echo "Commit: ${{ github.sha }}"
+          echo "Branch: ${{ github.ref }}"
