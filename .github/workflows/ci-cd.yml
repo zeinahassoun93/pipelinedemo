@@ -12,7 +12,17 @@ jobs:
       - name: Get the code
         uses: actions/checkout@v4
       
-      - name: Say hello
-        run: |
-          echo "Commit: ${{ github.sha }}"
-          echo "Branch: ${{ github.ref }}"
+      # - name: Say hello
+      #   run: |
+      #     echo "Commit: ${{ github.sha }}"
+      #     echo "Branch: ${{ github.ref }}"
+
+      - name: Set Up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Build and test
+        run: mvn -B clean package
